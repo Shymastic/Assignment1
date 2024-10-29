@@ -10,9 +10,10 @@ namespace CandidateManagement_Service.Interface
     public interface IJobPostingService
     {
         List<JobPosting> GetJobPostings();
-        public bool UpdateJobPosting(JobPosting jobPosting);
-        public bool DeleteJobPosting(string Id);
-        public bool AddJobPosting(JobPosting jobPosting);
-        public JobPosting GetJobPosting(string Id);
+        bool UpdateJobPosting(JobPosting jobPosting);
+        bool DeleteJobPosting(string Id);
+        bool AddJobPosting(JobPosting jobPosting);
+        JobPosting? GetJobPosting(string Id);
+        JobPosting? GetJobPostingByName(string name);
     }
 }

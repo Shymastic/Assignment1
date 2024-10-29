@@ -28,7 +28,7 @@ namespace CandidateManagement_Service.Service
             return _repo.DeleteJobPosting(Id);
         }
 
-        public JobPosting GetJobPosting(string Id)
+        public JobPosting? GetJobPosting(string Id)
         {
            return _repo.GetJobPosting(Id);
         }
@@ -37,7 +37,10 @@ namespace CandidateManagement_Service.Service
         {
             return _repo.GetJobPostings();
         }
-
+        public JobPosting? GetJobPostingByName(string name)
+        {
+            return _repo.GetJobPostingByName(name);
+        }
         public bool UpdateJobPosting(JobPosting jobPosting)
         {
             return _repo.UpdateJobPosting(jobPosting);

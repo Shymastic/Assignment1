@@ -1,6 +1,7 @@
 ﻿using CandidateManagement_BusinessObject.Models;
 using CandidateManagement_Service.Interface;
 using CandidateManagement_Service.Service;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,7 @@ using System.Windows.Shapes;
 
 namespace Candidate_WPF_GUI
 {
-    /// <summary>
-    /// Interaction logic for CandidateProfileWindow.xaml
-    /// </summary>
+
     public partial class CandidateProfileWindow : Window
     {
         private int? RoleID;
@@ -77,13 +76,14 @@ namespace Candidate_WPF_GUI
                 MessageBox.Show("Please enter a valid date.");
                 return;
             }
-            var jobPosting = _postingService.GetJobPostings().SingleOrDefault(c => c.JobPostingTitle == cmbJobPosting.Text);
+            var job = cmbJobPosting.SelectedValue;
+            var jobPosting = _postingService.GetJobPostingByName(cmbJobPosting.SelectedValue.ToString());
             if (jobPosting == null)
             {
                 MessageBox.Show("Job posting not found.");
                 return;
             }
-
+            
             var Candidate = new CandidateProfile
             {
                 CandidateId = txtCandidateID.Text,
@@ -91,7 +91,7 @@ namespace Candidate_WPF_GUI
                 ProfileUrl = txtImageURL.Text,
                 Birthday = birthday,
                 ProfileShortDescription = txtDescription.Text,
-                Posting = jobPosting
+                PostingId = jobPosting.PostingId
             };
 
             if (_service.AddCandidateProfile(Candidate))
@@ -135,7 +135,7 @@ namespace Candidate_WPF_GUI
                 MessageBox.Show("Please enter a valid date.");
                 return;
             }
-            var jobPosting = _postingService.GetJobPostings().SingleOrDefault(c => c.JobPostingTitle == cmbJobPosting.Text);
+            var jobPosting = _postingService.GetJobPostingByName(cmbJobPosting.SelectedValue.ToString());
             if (jobPosting == null)
             {
                 MessageBox.Show("Job posting not found.");
@@ -149,13 +149,12 @@ namespace Candidate_WPF_GUI
                 ProfileUrl = txtImageURL.Text,
                 Birthday = birthday,
                 ProfileShortDescription = txtDescription.Text,
-                Posting = jobPosting
+                PostingId = jobPosting.PostingId,
             };
 
             if (_service.UpdateCandidateProfile(Candidate))
             {
                 MessageBox.Show("Updated successfully.");
-                // Refresh data grid
                 dtgJobPost.ItemsSource = _service.GetCandidateProfiles();
             }
             else
@@ -186,7 +185,8 @@ namespace Candidate_WPF_GUI
                     txtFullName.Text = profile.Fullname;
                     txtImageURL.Text = profile.ProfileUrl;
                     BirthdayDate.Text = profile.Birthday.ToString();
-                    cmbJobPosting.SelectedValue = profile.PostingId;
+                    cmbJobPosting.SelectedValue = profile.Posting.JobPostingTitle;
+                    
 
                 }
             }

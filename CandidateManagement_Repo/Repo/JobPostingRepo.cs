@@ -21,7 +21,7 @@ namespace CandidateManagement_Repo.Repo
             return JobPostingDAO.Instance.DeleteJobPosting(Id);
         }
 
-        public JobPosting GetJobPosting(string Id)
+        public JobPosting? GetJobPosting(string Id)
         {
             return JobPostingDAO.Instance.GetJobPosting(Id);
         }
@@ -32,6 +32,10 @@ namespace CandidateManagement_Repo.Repo
         public bool UpdateJobPosting(JobPosting jobPosting)
         {
             return JobPostingDAO.Instance.UpdateJobPosting(jobPosting);
+        }
+        public JobPosting? GetJobPostingByName(string Name)
+        {
+            return JobPostingDAO.Instance.GetJobPostingByName(Name);
         }
     }
 }

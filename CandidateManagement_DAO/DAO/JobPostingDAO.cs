@@ -1,5 +1,6 @@
 ﻿using CandidateManagement_BusinessObject;
 using CandidateManagement_BusinessObject.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace CandidateManagement_DAO.DAO
                 return instance;
             }
         }
-        public JobPosting GetJobPosting(string Id)
+        public JobPosting? GetJobPosting(string Id)
         {
             return context.JobPostings.SingleOrDefault(c => c.PostingId == Id);
         }
@@ -35,12 +36,16 @@ namespace CandidateManagement_DAO.DAO
         {
             return context.JobPostings.ToList();
         }
+        public JobPosting? GetJobPostingByName(string name)
+        {
+            return context.JobPostings.AsNoTracking().SingleOrDefault(c=>c.JobPostingTitle == name);
+        }
         public bool AddJobPosting(JobPosting jobPosting)
         {
             var isSuccess = false;
             try
             {              
-                if (jobPosting == null && GetJobPosting(jobPosting.PostingId) == null) { }
+                if (jobPosting != null & GetJobPosting(jobPosting.PostingId) == null) 
                 {
                     context.JobPostings.Add(jobPosting);
                     context.SaveChanges();
@@ -56,7 +61,7 @@ namespace CandidateManagement_DAO.DAO
             var JobPost = GetJobPosting(Id);
             try
             {
-                if (JobPost != null) { }
+                if (JobPost != null) 
                 {
                     context.JobPostings.Remove(JobPost);
                     context.SaveChanges();
@@ -73,7 +78,7 @@ namespace CandidateManagement_DAO.DAO
             {
                 if (jobPosting != null)
                 {
-                    var existingJobPost = context.JobPostings.SingleOrDefault(c => c.PostingId == jobPosting.PostingId);
+                    var existingJobPost = GetJobPosting(jobPosting.PostingId);
                     if (existingJobPost != null)
                     {
                         context.Entry(existingJobPost).CurrentValues.SetValues(jobPosting);

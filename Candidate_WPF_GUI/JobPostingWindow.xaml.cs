@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Candidate_WPF_GUI
 {
-    /// <summary>
-    /// Interaction logic for JobPostingWindow.xaml
-    /// </summary>
     public partial class JobPostingWindow : Window
     {
         private int? RoleID;
@@ -49,14 +46,12 @@ namespace Candidate_WPF_GUI
 
         private void dtgJobPost_Loaded(object sender, RoutedEventArgs e)
         {
-            // Load all job postings into the DataGrid when the window is loaded
             dtgJobPost.ItemsSource = _jobPostingService.GetJobPostings();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
            
-            // Input validation
             if (string.IsNullOrWhiteSpace(txtPostID.Text) ||
                 string.IsNullOrWhiteSpace(txtTitle.Text) ||
                 txtPostDate.Text == null)
@@ -70,7 +65,7 @@ namespace Candidate_WPF_GUI
                 PostingId = txtPostID.Text,
                 JobPostingTitle = txtTitle.Text,
                 Description = txtDescription.Text,
-                PostedDate = DateTime.Parse(txtPostDate.Text), // Use SelectedDate instead of DisplayDate
+                PostedDate = DateTime.Parse(txtPostDate.Text), 
             };
 
             bool success = _jobPostingService.AddJobPosting(job);
@@ -78,7 +73,6 @@ namespace Candidate_WPF_GUI
             if (success)
             {
                 MessageBox.Show("Job posting added successfully.");
-                // Refresh the DataGrid after adding a new job posting
                 dtgJobPost.ItemsSource = _jobPostingService.GetJobPostings();
             }
             else
@@ -89,7 +83,6 @@ namespace Candidate_WPF_GUI
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            // Ensure PostID is entered before attempting deletion
             if (string.IsNullOrWhiteSpace(txtPostID.Text))
             {
                 MessageBox.Show("Please enter a Post ID.");
@@ -101,7 +94,6 @@ namespace Candidate_WPF_GUI
             if (success)
             {
                 MessageBox.Show("Job posting deleted successfully.");
-                // Refresh the DataGrid after deletion
                 dtgJobPost.ItemsSource = _jobPostingService.GetJobPostings();
             }
             else
@@ -112,7 +104,6 @@ namespace Candidate_WPF_GUI
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            // Input validation
             if (string.IsNullOrWhiteSpace(txtPostID.Text) ||
                 string.IsNullOrWhiteSpace(txtTitle.Text) ||
                 txtPostDate.Text == null)
@@ -126,7 +117,7 @@ namespace Candidate_WPF_GUI
                 PostingId = txtPostID.Text,
                 JobPostingTitle = txtTitle.Text,
                 Description = txtDescription.Text,
-                PostedDate = DateTime.Parse(txtPostDate.Text), // Use SelectedDate instead of DisplayDate
+                PostedDate = DateTime.Parse(txtPostDate.Text),
             };
 
             var success = _jobPostingService.UpdateJobPosting(job);
@@ -134,7 +125,6 @@ namespace Candidate_WPF_GUI
             if (success)
             {
                 MessageBox.Show("Job posting updated successfully.");
-                // Refresh the DataGrid after updating the job posting
                 dtgJobPost.ItemsSource = _jobPostingService.GetJobPostings();
             }
             else

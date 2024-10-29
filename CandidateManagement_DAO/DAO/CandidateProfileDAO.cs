@@ -30,17 +30,17 @@ namespace CandidateManagement_DAO.DAO
         }
         public List<CandidateProfile> GetCandidateProfiles()
         {
-            return context.CandidateProfiles.Include(c=>c.Posting).ToList();
+            return context.CandidateProfiles.Include(c=>c.Posting).AsNoTracking().ToList();
         }
         public CandidateProfile GetCandidateProfile(string id) {
-            return context.CandidateProfiles.SingleOrDefault(c => c.CandidateId == id);
+            return context.CandidateProfiles.Include(c=>c.Posting).AsNoTracking().SingleOrDefault(c => c.CandidateId == id);
         }
         public bool AddCandidateProfile(CandidateProfile CandidateProfile)
         {
             var isSuccess = false;
             try
             {
-                if (CandidateProfile == null && GetCandidateProfile(CandidateProfile.PostingId) == null) { }
+                if (CandidateProfile != null && GetCandidateProfile(CandidateProfile.CandidateId) == null) 
                 {
                     context.CandidateProfiles.Add(CandidateProfile);
                     context.SaveChanges();
@@ -56,7 +56,7 @@ namespace CandidateManagement_DAO.DAO
             var JobPost = GetCandidateProfile(Id);
             try
             {
-                if (JobPost != null) { }
+                if (JobPost != null) 
                 {
                     context.CandidateProfiles.Remove(JobPost);
                     context.SaveChanges();
@@ -71,7 +71,7 @@ namespace CandidateManagement_DAO.DAO
             var isSuccess = false;
             try
             {
-                if (CandidateProfile != null && GetCandidateProfile(CandidateProfile.PostingId) != null) { }
+                if (CandidateProfile != null && GetCandidateProfile(CandidateProfile.CandidateId) != null) 
                 {
                     context.CandidateProfiles.Update(CandidateProfile);
                     context.SaveChanges();
