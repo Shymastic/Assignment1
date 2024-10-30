@@ -1,0 +1,59 @@
+﻿<Window x:Class="Candidate_WPF_GUI.CandidateProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Candidate_WPF_GUI"
+        mc:Ignorable="d"
+        Title="CandidateProfileWindow" Height="588" Width="940">
+    <Grid Margin="0,0,2,-263" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.185"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFF7FAFA" Offset="1"/>
+                <GradientStop Color="#FFBBF3E7" Offset="0.634"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label x:Name="JobPostingManagement" Content="CANDIDATE PROFILE MANAGEMENT" HorizontalAlignment="Left" Margin="90,18,0,0" VerticalAlignment="Top" Height="56" Width="734" FontSize="36" FontWeight="Bold" FontFamily="Georgia"/>
+        <Label x:Name="CandidateID" Content="Candidate ID" Margin="120,101,621,439" RenderTransformOrigin="0.5,0.51" FontSize="15"/>
+        <Label x:Name="FullName" Content="FullName" Margin="120,148,621,392" RenderTransformOrigin="0.5,0.51" FontSize="15"/>
+        <TextBox x:Name="txtCandidateID" HorizontalAlignment="Left" Margin="232,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="30"/>
+        <TextBox x:Name="txtFullName" HorizontalAlignment="Left" Margin="232,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"  Height="30"/>
+        <Rectangle HorizontalAlignment="Left" Height="248" Margin="109,79,0,0" Stroke="Black" VerticalAlignment="Top" Width="696"/>
+        <Label x:Name="Description" Content="Description" Margin="471,163,270,370" RenderTransformOrigin="0.5,0.51" FontSize="15"/>
+        <DataGrid x:Name="dtgJobPost" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="109,355,37,315" Loaded="dtgJobPost_Loaded" SelectionChanged="dtgJobPost_SelectionChanged"/>
+        <Label x:Name="JobPosting" Content="JobPosting" Margin="471,101,270,439" RenderTransformOrigin="0.5,0.51" FontSize="15"/>
+        <Label x:Name="ImageURL" Content="Image URL" Margin="122,203,619,337" RenderTransformOrigin="0.5,0.51" FontSize="15"/>
+        <TextBox x:Name="txtImageURL" HorizontalAlignment="Left" Margin="232,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="30"/>
+        <Label x:Name="BirthDay" Content="Birthday" Margin="122,266,619,485" RenderTransformOrigin="0.5,0.51" FontSize="15"/>
+        <DatePicker x:Name="BirthdayDate" HorizontalAlignment="Left" Margin="232,272,0,0" VerticalAlignment="Top" Width="198"/>
+        <ComboBox x:Name="cmbJobPosting" HorizontalAlignment="Left" Margin="572,106,0,0" VerticalAlignment="Top" Width="211" Loaded="cmbJobPosting_Loaded"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="470,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313"  Height="96"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="226,544,0,0">
+            <Button x:Name="btnAdd" Content="Add" Width="80" Height="40" Background="#FF4CAF50" Foreground="White" FontSize="16" FontWeight="Bold" Margin="10" Click="btnAdd_Click"/>
+            <Button x:Name="btnUpdate" Content="Update" Width="80" Height="40" Background="#2196F3" Foreground="White" FontSize="16" FontWeight="Bold" Margin="10" Click="btnUpdate_Click"/>
+            <Button x:Name="btnDelete" Content="Delete" Width="80" Height="40" Background="#FFEB3B" Foreground="Black" FontSize="16" FontWeight="Bold" Margin="10" Click="btnDelete_Click"/>
+            <Button x:Name="btnClose" Content="Close" Width="80" Height="40" Background="#F44336" Foreground="White" FontSize="16" FontWeight="Bold" Margin="10" Click="btnClose_Click"/>
+
+        </StackPanel>
+        <Button x:Name="btnJPW" Content="Go To JP" Height="40" Width="180" FontSize="16" FontWeight="Bold" Foreground="White"
+        Background="#FF5722" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="339,609,0,0"
+        Click="btnJPW_Click" 
+        Cursor="Hand">
+        </Button>
+
+
+
+    </Grid>
+</Window>

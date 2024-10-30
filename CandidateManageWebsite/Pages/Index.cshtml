@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+            <label asp-for="Hraccount.Email" class="control-label"></label><br />
+                <input asp-for="Hraccount.Email" class="col-sm-3" />
+                <span asp-validation-for="Hraccount.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hraccount.Password" class="control-label"></label><br />
+                <input asp-for="Hraccount.Password" class="col-sm-3" type="password" />
+                <span asp-validation-for="Hraccount.Password" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
