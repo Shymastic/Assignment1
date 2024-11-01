@@ -9,7 +9,7 @@ namespace CandidateManagement_Service.Interface
 {
     public interface ICandidateProfileService
     {
-        List<CandidateProfile> GetCandidateProfiles();
+        List<CandidateProfileDTO> GetCandidateProfiles();
         bool DeleteCandidateProfile(string Id);
         CandidateProfile GetCandidateProfile(string id);
         bool UpdateCandidateProfile(CandidateProfile CandidateProfile);

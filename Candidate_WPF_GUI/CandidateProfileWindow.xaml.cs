@@ -49,9 +49,9 @@ namespace Candidate_WPF_GUI
             }
         }
         
-    private void dtgJobPost_Loaded(object sender, RoutedEventArgs e)
+    private void dtgCandidate_Loaded(object sender, RoutedEventArgs e)
         {
-            dtgJobPost.ItemsSource = _service.GetCandidateProfiles();
+            dtgCandidate.ItemsSource = _service.GetCandidateProfiles();
         }
 
         private void cmbJobPosting_Loaded(object sender, RoutedEventArgs e)
@@ -97,7 +97,7 @@ namespace Candidate_WPF_GUI
             if (_service.AddCandidateProfile(Candidate))
             {
                 MessageBox.Show("Added successfully.");
-                dtgJobPost.ItemsSource = _service.GetCandidateProfiles();
+                dtgCandidate.ItemsSource = _service.GetCandidateProfiles();
             }
             else
             {
@@ -111,7 +111,7 @@ namespace Candidate_WPF_GUI
             if (success)
             {
                 MessageBox.Show("Deleted successfully.");
-                dtgJobPost.ItemsSource = _service.GetCandidateProfiles();
+                dtgCandidate.ItemsSource = _service.GetCandidateProfiles();
             }
             else
             {
@@ -155,7 +155,7 @@ namespace Candidate_WPF_GUI
             if (_service.UpdateCandidateProfile(Candidate))
             {
                 MessageBox.Show("Updated successfully.");
-                dtgJobPost.ItemsSource = _service.GetCandidateProfiles();
+                dtgCandidate.ItemsSource = _service.GetCandidateProfiles();
             }
             else
             {
@@ -168,7 +168,7 @@ namespace Candidate_WPF_GUI
             this.Close();
         }
 
-        private void dtgJobPost_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dtgCandidate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dataGrid = sender as DataGrid;
             DataGridRow row = dataGrid.ItemContainerGenerator.

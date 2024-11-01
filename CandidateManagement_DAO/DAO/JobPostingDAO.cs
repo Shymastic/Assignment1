@@ -35,11 +35,11 @@ namespace CandidateManagement_DAO.DAO
         public JobPosting? GetJobPostingWithTracking(string id)
         {
 
-            return context.JobPostings.SingleOrDefault(c => c.PostingId == Id);
+            return context.JobPostings.SingleOrDefault(c => c.PostingId == id);
         }
         public List<JobPosting> GetJobPostings()
         {
-            return context.JobPostings.ToList();
+            return context.JobPostings.AsNoTracking().ToList();
         }
         public JobPosting? GetJobPostingByName(string name)
         {

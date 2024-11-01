@@ -46,7 +46,7 @@
 
         </StackPanel>
 
-        <DataGrid x:Name="dtgJobPost" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="117,402,127,190" SelectionChanged="dtgJobPost_SelectionChanged" Loaded="dtgJobPost_Loaded"/>
+        <DataGrid x:Name="dtgCandidate" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="117,402,127,190" SelectionChanged="dtgCandidate_SelectionChanged" Loaded="dtgCandidate_Loaded"/>
 
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,639,0,0">
@@ -55,11 +55,11 @@
             <Button x:Name="btnDelete" Content="Delete" Width="80" Height="40" Background="#FFEB3B" Foreground="Black" FontSize="16" FontWeight="Bold" Margin="10" Click="btnDelete_Click"/>
             <Button x:Name="btnClose" Content="Close" Width="80" Height="40" Background="#F44336" Foreground="White" FontSize="16" FontWeight="Bold" Margin="10" Click="btnClose_Click"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btnJPW" Content="Go To Job Posting Page" Background="#FF5722" Foreground="White" FontSize="16" FontWeight="Bold" Margin="510,284,120,460" Click="btnJPW_Click" Width="290"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button x:Name="btnJPW" Content="Go To Job Posting Page" Background="#FF5722" Foreground="White" FontSize="16" FontWeight="Bold" Click="btnJPW_Click" Width="290" Height="59" Margin="0,250,115,0"/>
         </StackPanel>
-        
-        <Label Content="Description:" FontSize="15" VerticalAlignment="Top" Margin="510,90,310,0"/>
+
+        <Label Content="Description:" FontSize="15" VerticalAlignment="Top" Margin="510,90,235,0"/>
         <TextBox x:Name="txtDescription" TextWrapping="Wrap" Margin="525,125,127,580"/>
 
     </Grid>

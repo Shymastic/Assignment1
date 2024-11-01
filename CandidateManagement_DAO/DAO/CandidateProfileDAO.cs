@@ -30,7 +30,7 @@ namespace CandidateManagement_DAO.DAO
         }
         public List<CandidateProfile> GetCandidateProfiles()
         {
-            return context.CandidateProfiles.Include(c=>c.Posting).ToList();
+            return context.CandidateProfiles.AsNoTracking().Include(c=>c.Posting).ToList();
         }
         public CandidateProfile GetCandidateProfile(string id) {
             return context.CandidateProfiles.Include(c=>c.Posting).AsNoTracking().SingleOrDefault(c => c.CandidateId == id);

@@ -34,9 +34,18 @@ namespace CandidateManagement_Service.Service
             return _repo.GetCandidateProfile(id);
         }
 
-        public  List<CandidateProfile> GetCandidateProfiles()
+        public  List<CandidateProfileDTO> GetCandidateProfiles()
         {
-            return _repo.GetCandidateProfiles();
+            return _repo.GetCandidateProfiles().Select(c => new CandidateProfileDTO
+            {
+                CandidateId = c.CandidateId,
+                Birthday = c.Birthday,
+                Fullname = c.Fullname,
+                ProfileShortDescription = c.ProfileShortDescription,
+                ProfileUrl = c.ProfileUrl,
+                PostingId = c.PostingId,
+                PostingName = c.Posting?.JobPostingTitle
+            }).ToList();
         }
 
         public bool UpdateCandidateProfile(CandidateProfile CandidateProfile)

@@ -34,7 +34,7 @@
                     <DatePicker x:Name="txtPostDate" Width="150" Height="30" Margin="10,0,0,0"/>
                 </StackPanel>
             </StackPanel>
-            <Label Content="Description:" FontSize="15" VerticalAlignment="Top" Margin="510,90,310,0"/>
+            <Label Content="Description:" FontSize="15" VerticalAlignment="Top" Margin="510,90,245,0"/>
             <TextBox x:Name="txtDescription" TextWrapping="Wrap" Margin="525,125,127,580"/>
             <DataGrid x:Name="dtgJobPost" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="117,402,127,190" SelectionChanged="dtgJobPost_SelectionChanged" Loaded="dtgJobPost_Loaded"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,639,0,0">
