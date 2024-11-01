@@ -30,6 +30,11 @@ namespace CandidateManagement_DAO.DAO
         }
         public JobPosting? GetJobPosting(string Id)
         {
+            return context.JobPostings.AsNoTracking().SingleOrDefault(c => c.PostingId == Id);
+        }
+        public JobPosting? GetJobPostingWithTracking(string id)
+        {
+
             return context.JobPostings.SingleOrDefault(c => c.PostingId == Id);
         }
         public List<JobPosting> GetJobPostings()
@@ -38,8 +43,9 @@ namespace CandidateManagement_DAO.DAO
         }
         public JobPosting? GetJobPostingByName(string name)
         {
-            return context.JobPostings.AsNoTracking().SingleOrDefault(c=>c.JobPostingTitle == name);
+            return context.JobPostings.SingleOrDefault(c=>c.JobPostingTitle == name);
         }
+      
         public bool AddJobPosting(JobPosting jobPosting)
         {
             var isSuccess = false;
@@ -49,7 +55,7 @@ namespace CandidateManagement_DAO.DAO
                 {
                     context.JobPostings.Add(jobPosting);
                     context.SaveChanges();
-                    isSuccess = true;
+                    isSuccess = true; context.Entry(jobPosting).State = EntityState.Detached;
                 }
             }
             catch (Exception ex) {  }
@@ -66,6 +72,7 @@ namespace CandidateManagement_DAO.DAO
                     context.JobPostings.Remove(JobPost);
                     context.SaveChanges();
                     isSuccess = true;
+                    context.Entry(JobPost).State = EntityState.Detached;
                 }
             }
             catch (Exception ex) { }
@@ -78,12 +85,13 @@ namespace CandidateManagement_DAO.DAO
             {
                 if (jobPosting != null)
                 {
-                    var existingJobPost = GetJobPosting(jobPosting.PostingId);
+                    var existingJobPost = GetJobPostingWithTracking(jobPosting.PostingId);
                     if (existingJobPost != null)
                     {
                         context.Entry(existingJobPost).CurrentValues.SetValues(jobPosting);
                         context.SaveChanges();
                         isSuccess = true;
+                        context.Entry(existingJobPost).State = EntityState.Detached;
                     }
                 }
             }

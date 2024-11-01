@@ -30,10 +30,14 @@ namespace CandidateManagement_DAO.DAO
         }
         public List<CandidateProfile> GetCandidateProfiles()
         {
-            return context.CandidateProfiles.Include(c=>c.Posting).AsNoTracking().ToList();
+            return context.CandidateProfiles.Include(c=>c.Posting).ToList();
         }
         public CandidateProfile GetCandidateProfile(string id) {
             return context.CandidateProfiles.Include(c=>c.Posting).AsNoTracking().SingleOrDefault(c => c.CandidateId == id);
+        }
+        public CandidateProfile GetCandidateProfileWithTracking(string id)
+        {
+            return context.CandidateProfiles.Include(c => c.Posting).SingleOrDefault(c => c.CandidateId == id);
         }
         public bool AddCandidateProfile(CandidateProfile CandidateProfile)
         {
@@ -45,6 +49,7 @@ namespace CandidateManagement_DAO.DAO
                     context.CandidateProfiles.Add(CandidateProfile);
                     context.SaveChanges();
                     isSuccess = true;
+                    context.Entry(CandidateProfile).State = EntityState.Detached;
                 }
             }
             catch (Exception ex) { }
@@ -53,15 +58,17 @@ namespace CandidateManagement_DAO.DAO
         public bool DeleteCandidateProfile(string Id)
         {
             var isSuccess = false;
-            var JobPost = GetCandidateProfile(Id);
+            var JobPost = GetCandidateProfileWithTracking(Id);
             try
             {
-                if (JobPost != null) 
+                if (JobPost != null)
                 {
                     context.CandidateProfiles.Remove(JobPost);
                     context.SaveChanges();
                     isSuccess = true;
+                    context.Entry(JobPost).State = EntityState.Detached;
                 }
+                
             }
             catch (Exception ex) { }
             return isSuccess;
@@ -76,6 +83,7 @@ namespace CandidateManagement_DAO.DAO
                     context.CandidateProfiles.Update(CandidateProfile);
                     context.SaveChanges();
                     isSuccess = true;
+                    context.Entry(CandidateProfile).State = EntityState.Detached;
                 }
             }
             catch (Exception ex) { }
