@@ -3,6 +3,11 @@
 
 @{
     ViewData["Title"] = "Edit";
+    int role = int.Parse(HttpContext.Session.GetString("Role"));
+    if (role == 3)
+    {
+        Response.Redirect("./Error");
+    }
 }
 
 <h1>Edit</h1>

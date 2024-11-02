@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CandidateManagement_BusinessObject.Models;
 using CandidateManagement_Service.Interface;
+using CandidateManagement_Service;
 
 namespace CandidateManageWebsite.Pages.CandidateProfilePage
 {
@@ -19,7 +20,7 @@ namespace CandidateManageWebsite.Pages.CandidateProfilePage
             _service = service;
         }
 
-        public IList<CandidateProfile> CandidateProfile { get;set; } = default!;
+        public IList<CandidateProfileDTO> CandidateProfile { get;set; } = default!;
 
         public async Task OnGetAsync()
         {

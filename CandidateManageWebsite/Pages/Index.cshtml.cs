@@ -21,16 +21,24 @@ namespace CandidateManageWebsite.Pages
         {
             var Email = Hraccount.Email;
             var Password = Hraccount.Password;
+            
             if (_service.GetHraccounts != null)
             {
-                var account =  _service.GetHraccountByEmail(Email);
-                if (account != null && account.Password.Equals(Password)) {
-                    HttpContext.Session.SetString("Role", account.MemberRole.ToString());
-                    return RedirectToPage("./CandidateProfilePage/Index");
+                var account = _service.GetHraccountByEmail(Email);
+                if (account.MemberRole != 3)
+                {
 
+
+                    if (account != null && account.Password.Equals(Password))
+                    {
+                        HttpContext.Session.SetString("Role", account.MemberRole.ToString());
+                        return RedirectToPage("./CandidateProfilePage/Index");
+
+                    }
+                    return Unauthorized();
                 }
             }
-            return NotFound() ;
+            return NotFound("Username, Password being Incorrect") ;
         }
     }
 }
