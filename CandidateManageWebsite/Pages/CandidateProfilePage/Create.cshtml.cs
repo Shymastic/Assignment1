@@ -34,7 +34,7 @@ namespace CandidateManageWebsite.Pages.CandidateProfilePage
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _service.GetCandidateProfiles == null || CandidateProfile == null)
+          if (!ModelState.IsValid || _service.GetCandidateProfile(CandidateProfile.CandidateId) != null || CandidateProfile == null)
             {
                 return Page();
             }

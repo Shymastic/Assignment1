@@ -31,7 +31,7 @@ namespace CandidateManageWebsite.Pages.JobPostingPage
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public IActionResult OnPostAsync()
         {
-          if (!ModelState.IsValid ||_service.GetJobPosting(JobPosting.PostingId) == null || JobPosting == null)
+          if (!ModelState.IsValid || _service.GetJobPosting(JobPosting.PostingId) != null || JobPosting == null)
             {
                 return Page();
             }
